@@ -32,7 +32,7 @@ if (!window.sb) {
   $("#signin").hidden = false;
 } else {
   sb.auth.getSession().then(({ data }) => render(data.session));
-  sb.auth.onAuthStateChange((_e, s) => render(s));
+  sb.auth.onAuthStateChange((_e, s) => { setTimeout(() => render(s), 0); });
 
   if ($("#google")) $("#google").onclick = async () => {
     const { error } = await sb.auth.signInWithOAuth({ provider: "google", options: { redirectTo: back } });
@@ -67,11 +67,17 @@ if (!window.sb) {
     const code = $("#code").value.trim();
     if (!code) return say("#msg2", "Enter your Activation Code.", true);
     $("#activate").disabled = true; say("#msg2", "Checking…");
-    const { error } = await sb.rpc("activate_card", { p_code: code });
-    $("#activate").disabled = false;
-    if (error) return say("#msg2", error.message, true);
-    say("#msg2", "Card activated! Opening the profile builder…");
-    setTimeout(() => location.href = NEXT, 900);
+    try {
+      const wait = new Promise((_, rej) => setTimeout(() => rej(new Error("This is taking too long. Check your internet and try again.")), 15000));
+      const { error } = await Promise.race([sb.rpc("activate_card", { p_code: code }), wait]);
+      if (error) throw error;
+      say("#msg2", "Card activated! Opening the profile builder…");
+      setTimeout(() => location.href = NEXT, 900);
+    } catch (e) {
+      say("#msg2", e.message || "Something went wrong. Try again.", true);
+    } finally {
+      $("#activate").disabled = false;
+    }
   };
   $("#another").onclick = () => { $("#codebox").hidden = false; $("#codebox").scrollIntoView({ behavior: "smooth" }); };
   $("#signout").onclick = async () => { await sb.auth.signOut(); location.reload(); };
