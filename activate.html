@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Activate your card | TapNext</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="editor.css">
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="logo">Tap<span>Next.</span></a>
+  <a href="index.html" class="back-link">Back to home</a>
+</nav>
+<main class="editor-container">
+  <div class="editor-heading">
+    <h1>Activate your card</h1>
+    <p id="intro">Sign in, then enter the Lifetime Code that came with your card.</p>
+  </div>
+
+  <section class="form-section" id="signin" hidden>
+    <h2>Step 1: Sign in</h2>
+    <p>Use your Google account, or get a sign-in link by email.</p>
+    <div class="auth-stack">
+      <button type="button" class="primary-btn" id="google">Continue with Google</button>
+      <div class="or-line">or</div>
+      <div class="form-group"><label for="email">Email</label><input id="email" type="email" autocomplete="email" placeholder="you@example.com"></div>
+      <button type="button" class="ghost-btn full" id="magic">Email me a sign-in link</button>
+    </div>
+    <p class="msg" id="msg1" role="status"></p>
+  </section>
+
+  <section class="form-section" id="codebox" hidden>
+    <h2>Step 2: Enter your Lifetime Code</h2>
+    <p class="who" id="who"></p>
+    <div class="form-group"><label for="code">Lifetime Code</label><input id="code" autocomplete="off" autocapitalize="characters" placeholder="Code from your parcel"></div>
+    <button type="button" class="primary-btn" id="activate">Activate card</button>
+    <p class="msg" id="msg2" role="status"></p>
+    <button type="button" class="clear-btn" id="signout">Sign out</button>
+  </section>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.4/dist/umd/supabase.js"></script>
+<script src="config.js"></script>
+<script src="activate.js"></script>
+</body>
+</html>

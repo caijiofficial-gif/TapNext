@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Profile | TapNext</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="profile.css">
+</head>
+<body class="pf" data-type="personal">
+<header class="topbar">
+  <a href="index.html" class="home-link" aria-label="Back to home"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a>
+  <a href="index.html" class="mini-logo">Tap<span>Next.</span></a>
+</header>
+<div class="switcher" role="tablist" aria-label="Preview profile type">
+  <button role="tab" data-t="personal">Personal</button>
+  <button role="tab" data-t="gamer">Gamer</button>
+  <button role="tab" data-t="athletic">Athletic</button>
+</div>
+<main class="card-wrap">
+  <header class="hero-pf" id="hero">
+    <img id="photo" alt="" hidden>
+    <a class="photo-btn" id="editLink" href="editor.html" title="Edit profile" aria-label="Edit profile"><svg viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16zM13 7l4 4"/></svg></a>
+    <div class="hero-text">
+      <h1 id="name"></h1>
+      <p class="sub"><span id="sub"></span><span class="loc" id="loc"></span></p>
+      <p class="slide" id="slide"></p>
+      <div class="pager"><span id="pageNo"></span><span class="bars" id="bars"></span><button id="next">Next</button></div>
+    </div>
+  </header>
+  <nav class="quick" id="quick" aria-label="Contact"></nav>
+  <p class="sample-note" id="sampleNote" hidden>This is a sample. <a href="editor.html" id="sampleEdit">Make it yours</a></p>
+  <section class="acc" id="acc"></section>
+</main>
+<div class="bar">
+  <button id="toggleAll" class="link-btn">Expand all</button>
+  <button id="save" class="save">Save contact</button>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.4/dist/umd/supabase.js"></script>
+<script src="config.js"></script>
+<script src="profile.js"></script>
+</body>
+</html>

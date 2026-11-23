@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Opening profile | TapNext</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="editor-container">
+  <div class="form-section" style="text-align:center">
+    <h2 id="t">Opening profile…</h2>
+    <p id="s">One moment.</p>
+  </div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.4/dist/umd/supabase.js"></script>
+<script src="config.js"></script>
+<script>
+(async () => {
+  const c = new URLSearchParams(location.search).get("c");
+  if (!c || !window.sb) { location.replace("index.html"); return; }
+  const { data, error } = await sb.rpc("resolve_card", { p_public_id: c });
+  if (data) location.replace("profile.html?u=" + encodeURIComponent(data));
+  else if (error) { document.getElementById("t").textContent = "Could not open this card"; document.getElementById("s").textContent = "Check your internet connection and tap again."; }
+  else location.replace("activate.html?c=" + encodeURIComponent(c));
+})();
+</script>
+</body>
+</html>

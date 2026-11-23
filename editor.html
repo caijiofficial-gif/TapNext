@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edit profile | TapNext</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="editor.css">
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="logo">Tap<span>Next.</span></a>
+  <div class="nav-actions"><span id="acct"></span><a href="index.html" class="back-link">Back to home</a></div>
+</nav>
+<main class="editor-container">
+  <div class="editor-heading">
+    <h1 id="title">Build your profile</h1>
+    <p>Everything you fill in appears on your profile page. Empty sections are hidden, and changes save automatically on this device.</p>
+  </div>
+  <nav class="type-tabs" id="tabs" aria-label="Profile type"></nav>
+  <form id="form" onsubmit="return false"></form>
+  <button type="button" class="clear-btn" id="clear">Clear this profile</button>
+</main>
+<div class="savebar">
+  <span id="status" role="status">Changes save automatically</span>
+  <button type="button" class="primary-btn" id="view">Save and view profile</button>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.4/dist/umd/supabase.js"></script>
+<script src="config.js"></script>
+<script src="editor.js"></script>
+</body>
+</html>

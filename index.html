@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TapNext | Create Your Profile</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="logo">Tap<span>Next.</span></a>
+  <div class="nav-actions">
+    <a href="#features" class="nav-link">Features</a>
+    <a href="#how" class="nav-link">How it works</a>
+    <a href="activate.html" class="nav-link">Activate card</a>
+    <a href="#choose" class="nav-cta">Get started</a>
+  </div>
+</nav>
+
+<main class="home-container">
+  <section class="hero">
+    <div class="hero-copy">
+      <h1>Tap your card. Your whole story opens.</h1>
+      <p>Build a profile once, link it to your NFC card, and anyone can open it by tapping their phone on yours. No app needed.</p>
+      <div class="hero-actions">
+        <a href="#choose" class="primary-btn btn-link">Create your profile</a>
+        <a href="#how" class="ghost-btn btn-link">See how it works</a>
+      </div>
+    </div>
+
+    <div class="demo" aria-hidden="true">
+      <div class="nfc-card"><span class="nfc-logo">Tap<b>Next.</b></span><span class="nfc-waves"><i></i><i></i><i></i></span></div>
+      <div class="phone">
+        <div class="phone-cover" id="pv-cover"></div>
+        <div class="phone-avatar" id="pv-avatar">A</div>
+        <h4 id="pv-name">Alex Rivera</h4>
+        <small id="pv-role">Student · Music lover</small>
+        <div class="phone-tags" id="pv-tags"></div>
+        <div class="phone-btn" id="pv-btn">Follow on Instagram</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="selection-section" id="choose">
+    <div class="section-heading">
+      <h2>Choose your profile type</h2>
+      <p>Pick the one that fits you. Hover or tap a card to preview it.</p>
+    </div>
+    <div class="profile-grid">
+      <article class="profile-card" data-preview="personal">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+        </div>
+        <h3>Personal</h3>
+        <p>Your name, bio, interests and social links in one place.</p>
+        <button class="select-btn" data-type="personal">Create personal profile</button>
+      </article>
+      <article class="profile-card" data-preview="gamer">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9h12a4 4 0 0 1 4 4v2a3 3 0 0 1-5.2 2L15 15H9l-1.8 2A3 3 0 0 1 2 15v-2a4 4 0 0 1 4-4zM8 11v4M6 13h4M16 12h.01M18 14h.01"/></svg>
+        </div>
+        <h3>Gamer</h3>
+        <p>Your games, rank, gaming IDs, clips and setup.</p>
+        <button class="select-btn" data-type="gamer">Create gamer profile</button>
+      </article>
+      <article class="profile-card" data-preview="athletic">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0zM17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg>
+        </div>
+        <h3>Athletic</h3>
+        <p>Your sport, team, stats and achievements.</p>
+        <button class="select-btn" data-type="athletic">Create athletic profile</button>
+      </article>
+    </div>
+  </section>
+
+  <section class="features" id="features">
+    <div class="section-heading"><h2>Everything in one tap</h2><p>One card, one digital profile, no monthly fees.</p></div>
+    <ul class="feat-grid"><li><h3>NFC-Powered Business Card</h3><p>Tap to share your profile instantly.</p></li><li><h3>Built-in Digital Profile Website</h3><p>Create your own personalized online identity.</p></li><li><h3>Customizable Profile</h3><p>Add photos, contact details, bio, and social media links.</p></li><li><h3>3 Profile Modes</h3><p>Personal, Gamer, and Athletic.</p></li><li><h3>5 Digital Profile Themes</h3><p>Light, Dark, Navy, Pink, and Green.</p></li><li><h3>Editable Anytime</h3><p>Update your digital profile without replacing your physical card.</p></li><li><h3>One-Time Payment</h3><p>No mandatory monthly subscription for basic profile access.</p></li></ul>
+  </section>
+
+  <section class="card-info" id="card">
+    <div class="info-box">
+      <h2>What's included</h2>
+      <ul class="check-list"><li>1 TapNext One Tap NFC Business Card</li><li>Your own digital profile website</li><li>TapNext Lifetime Activation Code</li><li>Access to the profile builder</li><li>Digital profile customization and publishing</li></ul>
+    </div>
+    <div class="info-box colors-box">
+      <h2>Available card colors</h2>
+      <div class="color-picker">
+        <div class="cc-stage">
+          <div class="cc-float"><div class="cc-tilt" id="ccTilt">
+            <div class="cc-card" id="ccCard" role="img" aria-label="TapNext NFC business card preview">
+              <div class="cc-face cc-front">
+                <div class="cc-top"><span class="cc-logo">Tap<b>Next.</b></span><svg class="cc-nfc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 8c2 2.5 2 5.5 0 8M10 5.5c3.5 3.7 3.5 9.3 0 13M14 3c5 5 5 13 0 18"/></svg></div>
+                <div class="cc-bottom"><span class="cc-emboss">YOUR NAME</span><span class="cc-small">One Tap NFC Card</span></div>
+              </div>
+              <div class="cc-face cc-back">
+                <svg class="cc-nfc cc-nfc-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 8c2 2.5 2 5.5 0 8M10 5.5c3.5 3.7 3.5 9.3 0 13M14 3c5 5 5 13 0 18"/></svg>
+                <span class="cc-tap">Tap to open your profile</span>
+                <span class="cc-small">Works with NFC-compatible phones</span>
+              </div>
+            </div>
+          </div></div>
+          <div class="cc-shadow"></div>
+        </div>
+        <div class="cc-options">
+          <p class="cc-label">Selected color</p>
+          <p class="cc-name" id="ccName" aria-live="polite">Black</p>
+          <div class="cc-swatches" role="radiogroup" aria-label="Card color"><button type="button" class="cc-swatch" role="radio" aria-checked="true" data-name="Black" data-base="#17171a" data-fg="#ffffff" data-ac="#9a9aa6"><span class="swatch" style="background:#17171a"></span>Black</button><button type="button" class="cc-swatch" role="radio" aria-checked="false" data-name="White" data-base="#f6f2f3" data-fg="#29151B" data-ac="#A94F68"><span class="swatch" style="background:#f6f2f3"></span>White</button><button type="button" class="cc-swatch" role="radio" aria-checked="false" data-name="Midnight Navy" data-base="#16264a" data-fg="#ffffff" data-ac="#8fb0ff"><span class="swatch" style="background:#16264a"></span>Midnight Navy</button><button type="button" class="cc-swatch" role="radio" aria-checked="false" data-name="Blush Pink" data-base="#f2b8c6" data-fg="#4a1425" data-ac="#A94F68"><span class="swatch" style="background:#f2b8c6"></span>Blush Pink</button><button type="button" class="cc-swatch" role="radio" aria-checked="false" data-name="Forest Green" data-base="#1f4a30" data-fg="#ffffff" data-ac="#8fd4a6"><span class="swatch" style="background:#1f4a30"></span>Forest Green</button></div>
+          <button type="button" class="cc-flip" id="ccFlip">Flip card</button>
+          <p class="cc-hint">Choose a color to preview your card. Move your cursor over it to tilt.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="how" id="how">
+    <div class="section-heading">
+      <h2>How to set up your card</h2>
+      <p>You're all set once you publish. Your TapNext One Tap card is then ready to share your profile with other people.</p>
+    </div>
+    <ol class="steps steps-6"><li><span class="step-n">1</span><h3>Tap your card</h3><p>Tap your NFC card on your compatible smartphone to open the TapNext website.</p></li><li><span class="step-n">2</span><h3>Activate</h3><p>Select Activate Card.</p></li><li><span class="step-n">3</span><h3>Sign in</h3><p>Sign in using the TapNext Lifetime Code included in your parcel, or your linked Google account.</p></li><li><span class="step-n">4</span><h3>Build your profile</h3><p>Choose your profile theme and add your photos, details, and social media links.</p></li><li><span class="step-n">5</span><h3>Preview</h3><p>Preview your profile.</p></li><li><span class="step-n">6</span><h3>Publish</h3><p>Publish your digital profile.</p></li></ol>
+  </section>
+
+  <section class="perfect" id="perfect">
+    <div class="section-heading"><h2>Perfect for</h2></div>
+    <ul class="perfect-list"><li>Students</li><li>Gamers</li><li>Athletes</li></ul>
+    <ul class="check-list check-2"><li>No need to print hundreds of calling cards.</li><li>Share multiple contact details and social links through one digital profile.</li><li>Update your information anytime.</li><li>Modern and professional design.</li><li>Easy to activate and customize.</li><li>No mandatory monthly subscription for basic access.</li></ul>
+  </section>
+
+  <section class="notes" id="notes">
+    <h2>Important notes</h2>
+    <ul><li>NFC functionality requires an NFC-compatible smartphone.</li><li>Internet connection is required to view the digital profile website.</li><li>The card opens your assigned TapNext profile link.</li><li>Google sign-in is available for linked accounts.</li><li>Profile features and uploads are subject to applicable usage limits.</li><li>Card colors may appear slightly different due to lighting and screen settings.</li></ul>
+  </section>
+
+</main>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">Tap<span>Next.</span></a>
+      <p>One tap NFC business cards with a digital profile you can edit anytime.</p>
+    </div>
+    <nav class="footer-links" aria-label="Footer">
+      <a href="#choose">Create profile</a>
+      <a href="#features">Features</a>
+      <a href="#card">Card colors</a>
+      <a href="#how">How it works</a>
+      <a href="#notes">Notes</a>
+    </nav>
+  </div>
+  <p class="footer-copy">© 2026 TapNext. All rights reserved.</p>
+</footer>
+<script src="app.js"></script>
+</body>
+</html>
