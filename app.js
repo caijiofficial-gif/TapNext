@@ -68,3 +68,13 @@ showPreview("personal");
   card.addEventListener("click", flip);
   document.getElementById("ccFlip").addEventListener("click", flip);
 })();
+
+// Copy the payment number
+(function(){
+  const b = document.getElementById("copyPay"); if(!b) return;
+  b.addEventListener("click", () => {
+    const done = t => { b.textContent = t; setTimeout(() => b.textContent = "Copy number", 1600); };
+    if(navigator.clipboard) navigator.clipboard.writeText(b.dataset.copy).then(() => done("Copied!"), () => done("Copy failed"));
+    else done("Copy failed");
+  });
+})();

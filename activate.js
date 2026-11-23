@@ -10,7 +10,7 @@ function render(session) {
   $("#signin").hidden = !!session;
   $("#codebox").hidden = !session;
   if (session) $("#who").textContent = "Signed in as " + (session.user.email || "your account");
-  if (qs.get("c") && !session) $("#intro").textContent = "This card isn't set up yet. Sign in, then enter the Lifetime Code that came with it.";
+  if (qs.get("c") && !session) $("#intro").textContent = "This card isn't set up yet. Sign in, then enter the Activation Code that came with it.";
 }
 
 if (!window.sb) {
@@ -32,7 +32,7 @@ if (!window.sb) {
   };
   $("#activate").onclick = async () => {
     const code = $("#code").value.trim();
-    if (!code) return say("#msg2", "Enter your Lifetime Code.", true);
+    if (!code) return say("#msg2", "Enter your Activation Code.", true);
     $("#activate").disabled = true; say("#msg2", "Checking…");
     const { error } = await sb.rpc("activate_card", { p_code: code });
     $("#activate").disabled = false;

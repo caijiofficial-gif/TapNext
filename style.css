@@ -297,3 +297,18 @@ footer{padding:28px;text-align:center;font-size:11px;color:var(--muted);border-t
 .link-sm{background:none;border:0;color:var(--muted);font-size:12px;text-decoration:underline;margin-left:10px}
 .acct-mail{font-size:12px;color:var(--muted)}
 [hidden]{display:none!important}
+
+/* Pricing */
+.pricing{padding-bottom:90px}
+.price-box{display:grid;grid-template-columns:1fr 1fr;gap:22px;background:rgba(255,255,255,.84);border:1px solid rgba(100,30,50,.1);border-radius:var(--radius-lg);padding:32px;box-shadow:var(--shadow)}
+.price-line{display:flex;align-items:baseline;gap:8px;margin-bottom:22px}
+.price{font-size:64px;font-weight:800;letter-spacing:-3px;color:var(--primary);line-height:1}
+.per{font-size:16px;color:var(--muted);font-weight:600}
+.pay-card{background:var(--accent-soft);border-radius:18px;padding:24px;border:1px solid rgba(100,30,50,.08)}
+.pay-card h3{font-size:16px;color:var(--primary);margin-bottom:12px}
+.pay-steps{padding-left:20px;display:grid;gap:8px;font-size:13px;line-height:1.7;color:var(--primary);margin-bottom:18px}
+.pay-number{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;background:#fff;border-radius:14px;padding:14px 16px;border:1px solid var(--border)}
+.pay-number span{display:block;font-size:11px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.pay-number strong{font-size:22px;letter-spacing:.02em;color:var(--primary)}
+.pay-number .ghost-btn{min-height:40px;padding:0 16px}
+@media(max-width:900px){.price-box{grid-template-columns:1fr;padding:24px}}

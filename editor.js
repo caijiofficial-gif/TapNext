@@ -136,16 +136,21 @@ async function loadRemote() {
     saved = data.data || {}; photo = saved.photo || ""; L = saved.links || {};
     remote.profileId = data.id; remote.slug = data.slug || ""; remote.published = data.published;
   }
-  const c = await sb.from("cards").select("public_id,profile_id");
+  const c = await sb.from("cards").select("public_id,profile_id,paid_until");
   remote.cards = c.data || [];
 }
 function publishHTML() {
   if (!remote.signedIn) return `<section class="form-section"><h2>Publish</h2><p>Sign in to save your profile online and get a link you can share. <a class="inline-link" href="activate.html?next=${nextUrl()}">Sign in or activate your card</a></p></section>`;
   const assignOn = !remote.cards.some(c => c.profile_id) || remote.cards.some(c => c.profile_id && c.profile_id === remote.profileId);
   const assign = remote.cards.length ? `<div class="form-group"><label class="check"><input type="checkbox" id="assign" ${assignOn ? "checked" : ""}> Open this profile when my card is tapped</label></div>` : "";
+  const ends = remote.cards.map(c => c.paid_until ? new Date(c.paid_until) : null).filter(Boolean).sort((x, y) => y - x)[0];
+  const active = !!ends && ends > new Date();
+  const plan = !remote.cards.length ? "" : active
+    ? `<p class="hint">Your ₱5 monthly plan is active until ${esc(ends.toLocaleDateString())}.</p>`
+    : `<p class="hint" style="color:#B3261E;font-weight:600">Your ₱5 monthly plan is not active, so your public link is hidden. Pay by GCash or Maribank to 09708131228 and send your receipt. <a class="inline-link" href="index.html#pricing">Payment details</a></p>`;
   return `<section class="form-section"><h2>Publish</h2><p>Pick a link name, then turn on Public so people can open your profile.</p>
     <div class="form-group"><label for="slug">Link name</label><input id="slug" value="${esc(remote.slug)}" placeholder="e.g. alex-rivera" maxlength="30" autocapitalize="off" autocomplete="off"><p class="hint" id="pubLink"></p></div>
-    <div class="form-group"><label class="check"><input type="checkbox" id="pub" ${remote.published ? "checked" : ""}> Make my profile public</label></div>${assign}</section>`;
+    <div class="form-group"><label class="check"><input type="checkbox" id="pub" ${remote.published ? "checked" : ""}> Make my profile public</label></div>${plan}${assign}</section>`;
 }
 function showLink() {
   const el = $("#pubLink"), s = $("#slug"); if (!el || !s) return;
