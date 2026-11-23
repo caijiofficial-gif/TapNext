@@ -11,6 +11,10 @@
   <div class="form-section" style="text-align:center">
     <h2 id="t">Opening profile…</h2>
     <p id="s">One moment.</p>
+    <div class="auth-stack" id="acts" hidden style="margin-top:20px">
+      <a class="primary-btn btn-link" href="index.html">Go to TapNext</a>
+      <a class="ghost-btn btn-link full" href="activate.html">Card owner? Manage your card</a>
+    </div>
   </div>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.4/dist/umd/supabase.js"></script>
@@ -18,11 +22,24 @@
 <script>
 (async () => {
   const c = new URLSearchParams(location.search).get("c");
+  const show = (t, s) => { document.getElementById("t").textContent = t; document.getElementById("s").textContent = s; document.getElementById("acts").hidden = false; };
   if (!c || !window.sb) { location.replace("index.html"); return; }
-  const { data, error } = await sb.rpc("resolve_card", { p_public_id: c });
-  if (data) location.replace("profile.html?u=" + encodeURIComponent(data));
-  else if (error) { document.getElementById("t").textContent = "Could not open this card"; document.getElementById("s").textContent = "Check your internet connection and tap again."; }
-  else location.replace("activate.html?c=" + encodeURIComponent(c));
+  const go = slug => location.replace("profile.html?u=" + encodeURIComponent(slug));
+
+  const r = await sb.rpc("card_status", { p_public_id: c });
+  if (r.error) {
+    // card_status not installed yet: fall back to the simple lookup
+    const f = await sb.rpc("resolve_card", { p_public_id: c });
+    if (f.data) return go(f.data);
+    if (f.error) return show("Could not open this card", "Check your internet connection and tap again.");
+    return location.replace("activate.html?c=" + encodeURIComponent(c));
+  }
+  const st = r.data || "unknown";
+  if (st.startsWith("ok:")) return go(st.slice(3));
+  if (st === "unclaimed") return location.replace("activate.html?c=" + encodeURIComponent(c));
+  if (st === "empty") return show("This card isn't set up yet", "Its owner hasn't published a profile.");
+  if (st === "inactive") return show("This profile is currently inactive", "The owner's monthly plan needs to be renewed.");
+  show("Card not found", "Check the card and try again.");
 })();
 </script>
 </body>

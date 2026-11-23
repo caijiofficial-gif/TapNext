@@ -29,11 +29,12 @@
     </div>
   </header>
   <nav class="quick" id="quick" aria-label="Contact"></nav>
+  <p class="sample-note" id="emptyNote" hidden>Your profile is still empty. <a href="editor.html" id="emptyEdit">Add your details</a></p>
   <p class="sample-note" id="sampleNote" hidden>This is a sample. <a href="editor.html" id="sampleEdit">Make it yours</a></p>
   <section class="acc" id="acc"></section>
 </main>
 <div class="bar">
-  <button id="toggleAll" class="link-btn">Expand all</button>
+  <div class="bar-left"><a id="editBar" class="link-btn" href="editor.html">Edit</a><button id="toggleAll" class="link-btn">Expand all</button></div>
   <button id="save" class="save">Save contact</button>
 </div>
 <div class="toast" id="toast" role="status"></div>

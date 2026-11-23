@@ -6,11 +6,25 @@ const back = location.origin + location.pathname + location.search;
 
 function say(id, text, err) { const m = $(id); m.textContent = text; m.className = "msg" + (err ? " err" : ""); }
 
-function render(session) {
+async function render(session) {
   $("#signin").hidden = !!session;
   $("#codebox").hidden = !session;
-  if (session) $("#who").textContent = "Signed in as " + (session.user.email || "your account");
+  $("#done").hidden = true;
   if (qs.get("c") && !session) $("#intro").textContent = "This card isn't set up yet. Sign in, then enter the Activation Code that came with it.";
+  if (!session) return;
+  const who = "Signed in as " + (session.user.email || "your account");
+  $("#who").textContent = who; $("#who2").textContent = who;
+  // already activated a card? show where to go next instead of asking for a code again
+  const { data: cards } = await sb.from("cards").select("paid_until");
+  if (cards && cards.length) {
+    const ends = cards.map(c => c.paid_until ? new Date(c.paid_until) : null).filter(Boolean).sort((a, b) => b - a)[0];
+    $("#planline").textContent = ends && ends > new Date()
+      ? "Your ₱5 monthly plan is active until " + ends.toLocaleDateString() + "."
+      : "Your public link turns on once your ₱5 monthly payment is confirmed (GCash or Maribank 09708131228).";
+    $("#done").hidden = false;
+    $("#codebox").hidden = true;
+    $("#intro").textContent = "Your card is ready. Build your profile, then publish it.";
+  }
 }
 
 if (!window.sb) {
@@ -40,5 +54,6 @@ if (!window.sb) {
     say("#msg2", "Card activated! Opening the profile builder…");
     setTimeout(() => location.href = NEXT, 900);
   };
+  $("#another").onclick = () => { $("#codebox").hidden = false; $("#codebox").scrollIntoView({ behavior: "smooth" }); };
   $("#signout").onclick = async () => { await sb.auth.signOut(); location.reload(); };
 }

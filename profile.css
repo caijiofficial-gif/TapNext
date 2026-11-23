@@ -102,3 +102,5 @@
 .pager button:hover{background:var(--ac);color:var(--p)}
 
 .photo-btn[hidden],.switcher[hidden]{display:none}
+.bar-left{display:flex;align-items:center;gap:2px}
+.bar-left .link-btn{display:inline-block}

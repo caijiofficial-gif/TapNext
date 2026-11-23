@@ -120,6 +120,10 @@ function render(){
       <div class="body"><div><div class="inner">${body(kind,data)}</div></div></div>
     </div>`).join("");
   $("toggleAll").hidden = !secs.length;
+  $("editBar").hidden = !!U; $("editBar").href = "editor.html?type=" + type;
+  const empty = !secs.length && !(d.slides||[]).length && !q.length;
+  $("emptyNote").hidden = !(!U && !cur.sample && empty);
+  $("emptyEdit").href = "editor.html?type=" + type;
   slideIdx = 0; showSlide(); syncToggle();
 }
 function showSlide(){
