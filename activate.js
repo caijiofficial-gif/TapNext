@@ -20,7 +20,7 @@ if (!window.sb) {
   sb.auth.getSession().then(({ data }) => render(data.session));
   sb.auth.onAuthStateChange((_e, s) => render(s));
 
-  $("#google").onclick = async () => {
+  if ($("#google")) $("#google").onclick = async () => {
     const { error } = await sb.auth.signInWithOAuth({ provider: "google", options: { redirectTo: back } });
     if (error) say("#msg1", error.message, true);
   };
