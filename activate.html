@@ -31,10 +31,13 @@
 
   <section class="form-section" id="signin" hidden>
     <h2>Step 1: Sign in</h2>
-    <p>Enter your email and we'll send you a sign-in link.</p>
+    <p>New here? Enter your email, choose a password and tap Create account. Already have one? Tap Sign in.</p>
     <div class="auth-stack">
       <div class="form-group"><label for="email">Email</label><input id="email" type="email" autocomplete="email" placeholder="you@example.com"></div>
-      <button type="button" class="primary-btn" id="magic">Email me a sign-in link</button>
+      <div class="form-group"><label for="pw">Password</label><input id="pw" type="password" autocomplete="current-password" placeholder="At least 6 characters"></div>
+      <button type="button" class="primary-btn" id="signinpw">Sign in</button>
+      <button type="button" class="ghost-btn full" id="signup">Create account</button>
+      <button type="button" class="clear-btn" id="magic">Email me a sign-in link instead</button>
     </div>
     <p class="msg" id="msg1" role="status"></p>
   </section>

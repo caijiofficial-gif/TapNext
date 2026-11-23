@@ -38,6 +38,25 @@ if (!window.sb) {
     const { error } = await sb.auth.signInWithOAuth({ provider: "google", options: { redirectTo: back } });
     if (error) say("#msg1", error.message, true);
   };
+  const creds = () => {
+    const email = $("#email").value.trim(), password = $("#pw").value;
+    if (!email) { say("#msg1", "Enter your email first.", true); return null; }
+    if (password.length < 6) { say("#msg1", "Password must be at least 6 characters.", true); return null; }
+    return { email, password };
+  };
+  $("#signinpw").onclick = async () => {
+    const c = creds(); if (!c) return;
+    say("#msg1", "Signing in…");
+    const { error } = await sb.auth.signInWithPassword(c);
+    if (error) say("#msg1", /invalid login/i.test(error.message) ? "Wrong email or password. New here? Tap Create account." : error.message, true);
+  };
+  $("#signup").onclick = async () => {
+    const c = creds(); if (!c) return;
+    say("#msg1", "Creating your account…");
+    const { data, error } = await sb.auth.signUp(c);
+    if (error) return say("#msg1", /already/i.test(error.message) ? "This email already has an account. Tap Sign in." : error.message, true);
+    if (!data.session) say("#msg1", "Almost done: check your email and tap the confirmation link.");
+  };
   $("#magic").onclick = async () => {
     const email = $("#email").value.trim();
     if (!email) return say("#msg1", "Enter your email first.", true);
